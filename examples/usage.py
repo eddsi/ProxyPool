@@ -1,6 +1,5 @@
 import requests
 
-
 proxypool_url = 'http://127.0.0.1:5555/random'
 target_url = 'https://antispider5.scrape.center/'
 

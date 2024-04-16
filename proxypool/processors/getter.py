@@ -4,6 +4,7 @@ from proxypool.setting import PROXY_NUMBER_MAX
 from proxypool.crawlers import __all__ as crawlers_cls
 from proxypool.testers import __all__ as testers_cls
 
+
 class Getter(object):
     """
     getter of proxypool

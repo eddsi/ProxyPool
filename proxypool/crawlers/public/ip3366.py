@@ -2,7 +2,6 @@ from proxypool.crawlers.base import BaseCrawler
 from proxypool.schemas.proxy import Proxy
 import re
 
-
 MAX_PAGE = 3
 BASE_URL = 'http://www.ip3366.net/free/?stype={stype}&page={page}'
 
@@ -11,8 +10,8 @@ class IP3366Crawler(BaseCrawler):
     """
     ip3366 crawler, http://www.ip3366.net/
     """
-    urls = [BASE_URL.format(stype=stype,page=i) for stype in range(1,3) for i in range(1, 8)]
-    
+    urls = [BASE_URL.format(stype=stype, page=i) for stype in range(1, 3) for i in range(1, 8)]
+
     def parse(self, html):
         """
         parse html file to get proxies

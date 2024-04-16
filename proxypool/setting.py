@@ -4,7 +4,6 @@ from environs import Env
 from loguru import logger
 import shutil
 
-
 env = Env()
 env.read_env()
 
@@ -22,7 +21,6 @@ APP_DEBUG = env.bool('APP_DEBUG', True if APP_ENV == DEV_MODE else False)
 APP_DEV = IS_DEV = APP_ENV == DEV_MODE
 APP_PROD = IS_PROD = APP_ENV == PROD_MODE
 APP_TEST = IS_TEST = APP_ENV == TEST_MODE
-
 
 # Which WSGI container is used to run applications
 # - gevent: pip install gevent
@@ -96,11 +94,9 @@ ENABLE_TESTER = env.bool('ENABLE_TESTER', True)
 ENABLE_GETTER = env.bool('ENABLE_GETTER', True)
 ENABLE_SERVER = env.bool('ENABLE_SERVER', True)
 
-
 ENABLE_LOG_FILE = env.bool('ENABLE_LOG_FILE', True)
 ENABLE_LOG_RUNTIME_FILE = env.bool('ENABLE_LOG_RUNTIME_FILE', True)
 ENABLE_LOG_ERROR_FILE = env.bool('ENABLE_LOG_ERROR_FILE', True)
-
 
 LOG_LEVEL_MAP = {
     DEV_MODE: "DEBUG",

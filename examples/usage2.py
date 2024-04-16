@@ -9,7 +9,9 @@ import urllib3
 from fake_headers import Headers
 import uuid
 from geolite2 import geolite2
+
 ips = []
+
 
 # 爬数据的线程类
 
@@ -19,7 +21,6 @@ def getChinaIP(ip='127.0.0.1'):
     geolite2.close()
     print(ip_info)
     return True if ip_info['country']['iso_code'] == 'CN' else False
-
 
 
 class CrawlThread(threading.Thread):
@@ -47,12 +48,14 @@ class CrawlThread(threading.Thread):
             ''.join(str(uuid.uuid1()).split('-')))
         print(headers)
         html = requests.get(headers=headers, url=targetUrl, proxies={
-                            "http": 'http://' + self.proxyip, "https": 'https://' + self.proxyip}, verify=False, timeout=2).content.decode()
+            "http": 'http://' + self.proxyip, "https": 'https://' + self.proxyip}, verify=False,
+                            timeout=2).content.decode()
         # 结束计时
         end = time.time()
         # 输出内容
         print(threading.current_thread().getName() + "使用代理IP, 耗时 " + str(end - start) +
               "毫秒 " + self.proxyip + " 获取到如下HTML内容：\n" + html + "\n*************")
+
 
 # 获取代理IP的线程类
 
@@ -80,7 +83,7 @@ class GetIpThread(threading.Thread):
                     except Exception as e:
                         print(e)
             # 休眠
-            time.sleep(len(ips) /self.fetchSecond )
+            time.sleep(len(ips) / self.fetchSecond)
 
 
 if __name__ == '__main__':

@@ -8,7 +8,6 @@ import json
 BASE_URL = 'https://www.docip.net/data/free.json?t={date}'
 
 
-
 class DocipCrawler(BaseCrawler):
     """
     Docip crawler, https://www.docip.net/data/free.json

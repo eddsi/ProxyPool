@@ -4,7 +4,6 @@ from proxypool.crawlers.base import BaseCrawler
 from loguru import logger
 import re
 
-
 BASE_URL = 'https://www.zdaye.com/dayProxy/{page}.html'
 MAX_PAGE = 5 * 2
 

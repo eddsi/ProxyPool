@@ -164,12 +164,14 @@ import requests
 proxypool_url = 'http://127.0.0.1:5555/random'
 target_url = 'http://httpbin.org/get'
 
+
 def get_random_proxy():
     """
     get random proxy from proxypool
     :return: proxy
     """
     return requests.get(proxypool_url).text.strip()
+
 
 def crawl(url, proxy):
     """
@@ -191,6 +193,7 @@ def main():
     print('get random proxy', proxy)
     html = crawl(target_url, proxy)
     print(html)
+
 
 if __name__ == '__main__':
     main()
@@ -239,7 +242,8 @@ get random proxy 116.196.115.209:8080
 - PROXYPOOL_REDIS_PORT / REDIS_PORT：Redis 的端口，其中 PROXYPOOL_REDIS_PORT 会覆盖 REDIS_PORT 的值。
 - PROXYPOOL_REDIS_PASSWORD / REDIS_PASSWORD：Redis 的密码，其中 PROXYPOOL_REDIS_PASSWORD 会覆盖 REDIS_PASSWORD 的值。
 - PROXYPOOL_REDIS_DB / REDIS_DB：Redis 的数据库索引，如 0、1，其中 PROXYPOOL_REDIS_DB 会覆盖 REDIS_DB 的值。
-- PROXYPOOL_REDIS_CONNECTION_STRING / REDIS_CONNECTION_STRING：Redis 连接字符串，其中 PROXYPOOL_REDIS_CONNECTION_STRING 会覆盖 REDIS_CONNECTION_STRING 的值。
+- PROXYPOOL_REDIS_CONNECTION_STRING / REDIS_CONNECTION_STRING：Redis 连接字符串，其中 PROXYPOOL_REDIS_CONNECTION_STRING
+  会覆盖 REDIS_CONNECTION_STRING 的值。
 - PROXYPOOL_REDIS_KEY / REDIS_KEY：Redis 储存代理使用字典的名称，其中 PROXYPOOL_REDIS_KEY 会覆盖 REDIS_KEY 的值。
 
 ### 处理器
@@ -259,9 +263,12 @@ get random proxy 116.196.115.209:8080
 - LOG_DIR：日志相对路径
 - LOG_RUNTIME_FILE：运行日志文件名称
 - LOG_ERROR_FILE：错误日志文件名称
-- LOG_ROTATION: 日志记录周转周期或大小，默认 500MB，见 [loguru - rotation](https://github.com/Delgan/loguru#easier-file-logging-with-rotation--retention--compression)
-- LOG_RETENTION: 日志保留日期，默认 7 天，见 [loguru - retention](https://github.com/Delgan/loguru#easier-file-logging-with-rotation--retention--compression)
-- ENABLE_LOG_FILE：是否输出 log 文件，默认 true，如果设置为 false，那么 ENABLE_LOG_RUNTIME_FILE 和 ENABLE_LOG_ERROR_FILE 都不会生效
+- LOG_ROTATION: 日志记录周转周期或大小，默认
+  500MB，见 [loguru - rotation](https://github.com/Delgan/loguru#easier-file-logging-with-rotation--retention--compression)
+- LOG_RETENTION: 日志保留日期，默认 7
+  天，见 [loguru - retention](https://github.com/Delgan/loguru#easier-file-logging-with-rotation--retention--compression)
+- ENABLE_LOG_FILE：是否输出 log 文件，默认 true，如果设置为 false，那么 ENABLE_LOG_RUNTIME_FILE 和 ENABLE_LOG_ERROR_FILE
+  都不会生效
 - ENABLE_LOG_RUNTIME_FILE：是否输出 runtime log 文件，默认 true
 - ENABLE_LOG_ERROR_FILE：是否输出 error log 文件，默认 true
 
@@ -337,7 +344,8 @@ class Daili66Crawler(BaseCrawler):
 在这里只需要定义一个 Crawler 继承 BaseCrawler 即可，然后定义好 urls 变量和 parse 方法即可。
 
 - urls 变量即为爬取的代理网站网址列表，可以用程序定义也可写成固定内容。
-- parse 方法接收一个参数即 html，代理网址的 html，在 parse 方法里只需要写好 html 的解析，解析出 host 和 port，并构建 Proxy 对象 yield 返回即可。
+- parse 方法接收一个参数即 html，代理网址的 html，在 parse 方法里只需要写好 html 的解析，解析出 host 和 port，并构建 Proxy
+  对象 yield 返回即可。
 
 网页的爬取不需要实现，BaseCrawler 已经有了默认实现，如需更改爬取方式，重写 crawl 方法即可。
 
